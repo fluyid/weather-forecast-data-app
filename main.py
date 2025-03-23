@@ -1,5 +1,6 @@
 import streamlit as st
 import plotly.express as px
+from backend import get_data
 
 st.title("Weather Forecast for the Next Days")
 place = st.text_input("Place: ")
@@ -10,12 +11,7 @@ st.subheader(f"{option} for the next {days} {"day" if days < 2 else "days"} in {
 
 dates = ["2025-23-10", "2025-24-10", "2025-25-10"]
 
-def get_data(number_of_days):
-    temperatures = [10, 11, 15]
-    temperatures = [number_of_days * i for i in temperatures]
-    return dates, temperatures
-
-d, t = get_data(number_of_days=days)
+data = get_data(place, days, option)
 
 labels = {
     "x": "Date",
